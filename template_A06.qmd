@@ -297,6 +297,7 @@ paste0("The maximum median annual temperature of ", max, " occurred in ", max_ye
 
 ## Question 5 (5 points)
 
+
 Write a recursive function that calculates the sum of the digits in a number. 
 
 Example: The number 312 would return 6 (3 + 1 + 2)
@@ -305,7 +306,16 @@ Run your function with 935068.
 
 ```{r}
 
+sums = function(x) {
+  if (x<10) {
+    return (x)
+  } else {     #store last digit then redo without lqst digit
+    last_digit = x%%10
+    remainder = (x-last_digit) / 10 
+    return(last_digit + sums(remainder))
+  }
+}
 
-
+sums(935068)
 ```
 
