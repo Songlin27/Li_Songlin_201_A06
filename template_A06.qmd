@@ -102,6 +102,9 @@ Extract the value `8162` (LeBron James points) in 2 different ways:
 - using names
 
 ```{r}
+print(player_info[[2]][[4]])
+print(player_info[["LJ"]]$points)
+
 
 ```
 
@@ -113,6 +116,16 @@ Add a new named element to the end of each player's list called `height`. The he
 Print the `player_info` list to prove you were successful.
 
 ```{r}
+
+heights = c(MJ = 78, LJ = 81, KB = 78, KA = 86, SO = 85)
+
+for (player in names(player_info)) {
+  player_info[[player]] = append(player_info[[player]], list(height = heights[player]))
+}
+
+
+print(player_info)
+
 
 ```
 
@@ -133,6 +146,16 @@ Note: this must still run correctly even if the values were to change or if anot
 
 ```{r}
 
+points_per_game = list()
+
+#  points per game for each player 
+for (player in names(player_info)) {
+  points_per_game[[player]] = player_info[[player]]$points / player_info[[player]]$games_played
+}
+
+
+print(points_per_game)
+
 ```
 
 
@@ -143,6 +166,10 @@ Use the list created in Part c and an appropriate apply function to round each v
 Store the output as a vector and print the results.
 
 ```{r}
+
+rounded = sapply(points_per_game, round, digits = 2)
+print(rounded)
+
 
 ```
 
