@@ -231,6 +231,9 @@ Calculate the average temperature for each month across the whole data frame (us
 
 ```{r}
 
+average_temps = colMeans(max_temps[, 3:14])
+print(average_temps)
+
 ```
 
 
@@ -245,6 +248,14 @@ Create three new data frames by slicing the data by state.
 No need to print any output here.
 
 ```{r}
+
+# slice to include only Colorado 
+max_temps_CO = max_temps[max_temps$state == "CO", ]
+
+max_temps_OH = max_temps[max_temps$state == "OH", ]
+
+max_temps_VA = max_temps[max_temps$state == "VA", ]
+
 
 ```
 
@@ -267,6 +278,20 @@ Note: This code should still run successfully even if the numbers were to change
 
 ```{r}
 
+median = apply(max_temps_CO[, 3:14], 1, median)
+
+# find year of highest and lowest median
+max = max(median)
+min = min(median)
+
+
+max_year = max_temps_CO$year[which.max(median)]
+min_year = max_temps_CO$year[which.min(median)]
+
+# Print the results
+paste0("The maximum median annual temperature of ", max, " occurred in ", max_year,
+    " and the minimum median annual temperature of ", min, " occurred in ", min_year)
+
 ```
 
 
@@ -279,6 +304,8 @@ Example: The number 312 would return 6 (3 + 1 + 2)
 Run your function with 935068.
 
 ```{r}
+
+
 
 ```
 
